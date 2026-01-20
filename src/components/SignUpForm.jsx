@@ -84,6 +84,16 @@ export default function SignUpForm() {
               isLoading={isLoading}
               errors={errors}
               onSubmit={handleSubmit}
+              onChange={(e) => {
+                const { id, name: inputName, value } = e.target;
+                if (id === "email" || inputName === "email") {
+                  setEmail(value);
+                  if (errors.email) setErrors({ ...errors, email: null });
+                } else if (id === "name" || inputName === "name") {
+                  setName(value);
+                  if (errors.name) setErrors({ ...errors, name: null });
+                }
+              }}
             />
             <div className="mt-4 text-center">
               <Button
