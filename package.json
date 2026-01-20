@@ -1,9 +1,10 @@
 {
   "name": "@FIAP/account",
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
-    "build": "concurrently pnpm:build:*",
+    "build": "npm run build:webpack",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
     "lint": "eslint src --ext js",
