@@ -37,7 +37,7 @@ importers:
         specifier: ^7.23.3
         version: 7.28.5(@babel/core@7.28.6)
       '@babel/runtime':
-        specifier: ^7.23.3
+        specifier: ^7.28.6
         version: 7.28.6
       '@tailwindcss/postcss':
         specifier: ^4.1.18

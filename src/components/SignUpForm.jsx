@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { saveUserProfile } from "@FIAP/util";
 import { navigateToUrl } from "single-spa";
-import { Button } from "@valoro/ui";
+import { Button, LoginForm } from "@valoro/ui";
 
 export default function SignUpForm() {
   const [name, setName] = useState("");
@@ -58,91 +58,52 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50/50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-xl shadow-lg border border-gray-100">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Crie sua conta
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Comece a gerenciar suas finanças hoje
-          </p>
+    <div className="grid min-h-svh lg:grid-cols-2">
+      <div className="flex flex-col gap-4 p-6 md:p-10">
+        <div className="flex justify-center md:justify-start">
+          <a href="/" className="flex items-center font-medium">
+            <img
+              src="https://raw.githubusercontent.com/ValdielsonSiqueira/login/21086310dc02009808f6d9f58f8f154fe8493bcd/src/assets/logo-light.svg"
+              alt="Logo"
+              width={50}
+              height={50}
+            />
+            <span className="text-xl font-bold">Valoro</span>
+          </a>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-full max-w-xs">
+            <LoginForm
+              title="Crie sua conta"
+              subtitle="Comece a gerenciar suas finanças hoje"
+              nameLabel="Nome"
+              namePlaceholder="Seu nome completo"
+              emailLabel="E-mail"
+              emailPlaceholder="seu@email.com"
+              submitButtonText={isLoading ? "Criando..." : "Criar Conta"}
+              isLoading={isLoading}
+              errors={errors}
+              onSubmit={handleSubmit}
+            />
+            <div className="mt-4 text-center">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleCancel}
+                disabled={isLoading}
               >
-                Nome
-              </label>
-              <div className="mt-1">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  className={`block w-full rounded-md border text-base px-3 py-2 shadow-sm focus:border-primary focus:ring-primary sm:text-sm ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Seu nome completo"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                E-mail
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className={`block w-full rounded-md border text-base px-3 py-2 shadow-sm focus:border-primary focus:ring-primary sm:text-sm ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="seu@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                )}
-              </div>
+                Cancelar
+              </Button>
             </div>
           </div>
-
-          <div className="flex flex-col gap-3">
-            <Button
-              type="submit"
-              className="w-full justify-center"
-              disabled={isLoading}
-            >
-              {isLoading ? "Criando..." : "Criar Conta"}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full justify-center"
-              onClick={handleCancel}
-              disabled={isLoading}
-            >
-              Cancelar
-            </Button>
-          </div>
-        </form>
+        </div>
+      </div>
+      <div className="bg-muted relative hidden lg:!block overflow-hidden min-h-full">
+        <img
+          src="https://raw.githubusercontent.com/ValdielsonSiqueira/login/21086310dc02009808f6d9f58f8f154fe8493bcd/src/assets/placeholder.svg"
+          alt="Imagem de login"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       </div>
     </div>
   );
