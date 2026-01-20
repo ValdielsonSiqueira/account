@@ -7,7 +7,6 @@ module.exports = (webpackConfigEnv, argv) => {
     projectName: "account",
     webpackConfigEnv,
     argv,
-    outputSystemJS: false,
   });
 
   return merge(defaultConfig, {
